@@ -3,31 +3,34 @@
 import requests
 from tabulate import tabulate
 import time
-from time import sleep
-from prettytable import PrettyTable
 import curses
 
-url = 'http://www.google.com'
-table = PrettyTable(['site','status code','ping'])
+site_dict = [
+    {'index':'1','site_name':'GOOGLE','url':'http://www.google.com','ip':'192.168.1.1'}
+]
+
 window = curses.initscr() 
 curses.noecho()
 curses.cbreak()
+table_header = ['Index','Site Name','FQDN','status code','IP Address']
 
 try:
     while(True):
-        r = requests.get(url)
-        localtime = time.asctime( time.localtime(time.time()) )
-        # print(str(r.status_code).ljust(10),end='\r')
-        table_data = [(url,r.status_code,'ping')]
-        # print(tabulate(table_data, headers=table_header, tablefmt='grid'))
-        table.add_row([url,r.status_code,'ping'])
-        # print(table)
-        window.addstr(0,0,str(localtime))
-        window.addstr(1,0,str(table))
-        window.addstr(2,0,str(tabulate(table_data, headers=table_header, tablefmt='grid'))
-        window.refresh()
-        table.clear_rows()
-        sleep(5)
+        for site in site_dict:
+            index = site['index']
+            site_name = site['site_name']
+            url = site['url']
+            ip = site['ip']
+            r = requests.get(url)
+            localtime = time.asctime( time.localtime(time.time()) )
+            table_data = [
+                (index,site_name,url,r.status_code,ip)
+                ]
+            table= str(tabulate(table_data, headers=table_header, tablefmt='fancy',numalign='center',stralign='center'))
+            window.addstr(0,0,str(localtime))
+            window.addstr(1,0,table)
+            window.refresh()        
+            time.sleep(5)
 finally:
     curses.echo()
     curses.nocbreak()
