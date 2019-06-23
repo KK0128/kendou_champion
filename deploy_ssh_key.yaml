@@ -1,5 +1,12 @@
 ---
 - hosts: all
+  become: yes
+    become_method: sudo
+    # become_user: root
+    vars:
+      ansible_ssh_user: user01
+      ansible_ssh_pass: password01
+      ansible_become_pass: password01
   tasks:
   - name: Set authorized key taken from file
     authorized_key:

@@ -1,0 +1,21 @@
+---
+  - hosts: all
+    gather_facts: false
+    become: yes
+    become_method: sudo
+    # become_user: root
+    vars:
+      ansible_ssh_user: user01
+      ansible_ssh_pass: password01
+      ansible_become_pass: password01
+    tasks:
+    - name: change user passwd
+      user: name={{ item.name }} password={{ item.chpass | password_hash('sha512') }}  update_password=always
+      with_items:
+          #  - { name: 'root', chpass: 'root' }
+           - { name: 'user01', chpass: 'password01' }
+           - { name: 'user02', chpass: 'password02' }
+           - { name: 'user03', chpass: 'password03' }
+           - { name: 'user04', chpass: 'password04' }
+           - { name: 'user05', chpass: 'password05' }
+           - { name: 'user06', chpass: 'password06' }
