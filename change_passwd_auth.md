@@ -98,4 +98,25 @@
     iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
     service iptables save
     ```
-
+* 不要なssh認証情報を確認
+    ```
+    ls -a /home/User0[1:6]/.ssh/authorized_keys
+    ```
+* ansible
+参考資料：https://ansible-tran.readthedocs.io/en/latest/docs/intro_installation.html
+** install
+    ```
+    $ sudo yum install ansible
+    ```
+** host fileを入れ替え
+    ```
+** SSH keyを生成する
+    ```
+    ssh-keygen -t rsa -C KING -P ''
+    ssh-copy-id -i ~/.ssh/id_rsa.pub username@[ip,hostname]
+    ```
+** playbook depoly_ssh_key.yamlでSSH key.pub を全てのサーバーにに入れる
+    ```
+    ansible-palybook depoly_ssh_key.yaml
+    ```
+* 
