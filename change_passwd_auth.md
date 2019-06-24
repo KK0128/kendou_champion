@@ -46,6 +46,8 @@
     UPDATE user SET host = "$ip_address" WHERE user = "$user_name" AND host = "%";
     flush privileges;
     ```
+* ログ確認
+
 ## 
 # 権限変更
 * Webコンテンツと設定ファイルにreadonly属性を設定する
@@ -104,19 +106,19 @@
     ```
 * ansible
 参考資料：https://ansible-tran.readthedocs.io/en/latest/docs/intro_installation.html
-** install
+    * install
     ```
     $ sudo yum install ansible
     ```
-** host fileを入れ替え
+    * host fileを入れ替え
     ```
-** SSH keyを生成する
+    * SSH keyを生成する
     ```
     ssh-keygen -t rsa -C KING -P ''
     ssh-copy-id -i ~/.ssh/id_rsa.pub username@[ip,hostname]
     ```
-** playbook depoly_ssh_key.yamlでSSH key.pub を全てのサーバーにに入れる
+    * playbook depoly_ssh_key.yamlでSSH key.pub を全てのサーバーにに入れる
     ```
     ansible-palybook depoly_ssh_key.yaml
     ```
-* 
+    * 
