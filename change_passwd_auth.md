@@ -107,18 +107,17 @@
 * ansible
 参考資料：https://ansible-tran.readthedocs.io/en/latest/docs/intro_installation.html
     * install
-    ```
-    $ sudo yum install ansible
-    ```
+        ```
+        $ sudo yum install ansible
+        ```
     * host fileを入れ替え
-    ```
     * SSH keyを生成する
-    ```
-    ssh-keygen -t rsa -C KING -P ''
-    ssh-copy-id -i ~/.ssh/id_rsa.pub username@[ip,hostname]
-    ```
+        ```
+        ssh-keygen -t rsa -C KING -P ''
+        ssh-copy-id -i ~/.ssh/id_rsa.pub username@[ip,hostname]
+        ```
     * playbook depoly_ssh_key.yamlでSSH key.pub を全てのサーバーにに入れる
-    ```
-    ansible-palybook depoly_ssh_key.yaml
-    ```
+        ```
+        ansible-palybook depoly_ssh_key.yaml
+        ```
     * 
